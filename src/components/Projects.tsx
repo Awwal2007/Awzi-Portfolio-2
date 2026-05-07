@@ -6,6 +6,13 @@ import Image from 'next/image';
 
 const projects = [
   {
+    title: 'LuxeEstates',
+    category: 'Real Estate Platform',
+    image: '/projects/luxe-estate.png',
+    description: 'A high-end real estate platform showcasing elite properties with a focus on elegant design and premium user experience.',
+    link: 'https://luxe-estate-beta.vercel.app/',
+  },
+  {
     title: 'EatEasy Ecommerce',
     category: 'Full-Stack Development',
     image: '/projects/eat-easy.png',
@@ -15,7 +22,7 @@ const projects = [
   {
     title: 'Carrio Motors',
     category: 'Full-Stack Development',
-    image: '/projects/carrio-motors.webp',
+    image: '/projects/carrio-motors.png',
     description: 'A premium automotive platform for luxury car enthusiasts, featuring a sleek inventory management system and modern UI.',
     link: 'https://carrio-mottors-a.vercel.app/',
   },

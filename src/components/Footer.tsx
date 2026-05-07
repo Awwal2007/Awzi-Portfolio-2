@@ -8,10 +8,10 @@ export const Footer = () => {
         <div>
           <h2 className="text-6xl font-bold tracking-tighter mb-8">Let's build<br/>something great.</h2>
           <Link 
-            href="mailto:hello@awzi.dev" 
+            href="mailto:awzi.dev@gmail.com" 
             className="text-2xl font-light hover:text-accent transition-colors underline underline-offset-8"
           >
-            hello@awzi.dev
+            awzi.dev@gmail.com
           </Link>
         </div>
         

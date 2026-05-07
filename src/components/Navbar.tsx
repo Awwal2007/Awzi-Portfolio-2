@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
@@ -31,9 +32,8 @@ export const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold tracking-tighter hover:opacity-70 transition-opacity">
-          AWZI<span className="text-accent">.</span>
+          <Image className='h-auto w-auto' src="/projects/my-dev-logo.png" height="120" width="120" alt='Awzi.dev Logo' loading='eager'/>
         </Link>
-
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-12">
           {navLinks.map((link) => (
