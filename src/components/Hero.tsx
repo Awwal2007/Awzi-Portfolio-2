@@ -1,9 +1,43 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 export const Hero = () => {
+  const words = ['ELEGANCE', 'EXCELLENCE', 'INNOVATION'];
+  const [index, setIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [speed, setSpeed] = useState(150);
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const currentWord = words[index];
+      const shouldDelete = isDeleting;
+      
+      setDisplayedText(prev => {
+        if (shouldDelete) {
+          return currentWord.substring(0, prev.length - 1);
+        } else {
+          return currentWord.substring(0, prev.length + 1);
+        }
+      });
+
+      if (!shouldDelete && displayedText === currentWord) {
+        setSpeed(2000); // Wait before deleting
+        setIsDeleting(true);
+      } else if (shouldDelete && displayedText === '') {
+        setIsDeleting(false);
+        setIndex((prev) => (prev + 1) % words.length);
+        setSpeed(150);
+      } else {
+        setSpeed(isDeleting ? 75 : 150);
+      }
+    };
+
+    const timer = setTimeout(handleTyping, speed);
+    return () => clearTimeout(timer);
+  }, [displayedText, isDeleting, index, speed]);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -28,7 +62,7 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-background">
+    <section className="relative min-h-screen flex items-center justify-center pt-30 pb-10 overflow-hidden bg-background">
       <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
         {/* Subtle noise/grain effect could be added here via CSS */}
       </div>
@@ -49,11 +83,14 @@ export const Hero = () => {
           
           <motion.h1 
             variants={itemVariants}
-            className="text-5xl md:text-[6.5rem] font-bold tracking-tighter leading-[0.9] mb-12"
+            className="text-5xl md:text-[6rem] font-bold tracking-tighter leading-[0.9] mb-12"
           >
             CRAFTING<br/>
             DIGITAL<br/>
-            <span className="text-accent">ELEGANCE</span>
+            <span className="text-accent italic">
+              {displayedText}
+              <span className="inline-block w-[1px] h-[0.9em] bg-accent ml-1 animate-pulse align-middle" />
+            </span>
           </motion.h1>
           
           <motion.div 
